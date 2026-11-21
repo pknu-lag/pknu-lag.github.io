@@ -1,0 +1,59 @@
+.visit {
+  font-family: var(--type-sans);
+  color: #202923;
+  padding-block: clamp(40px,5.2vw,82px) clamp(54px,7vw,120px);
+}
+.visit h1 { margin: 0 0 clamp(25px,3.5vw,52px); font-weight: 400; font-size: var(--page-heading-size); line-height: 1.07; letter-spacing: var(--page-tracking); }
+.visit-grid { display: grid; grid-template-columns: minmax(0,.65fr) minmax(0,1.35fr); gap: clamp(26px,4.8vw,84px); align-items: start; }
+.visit-campus { color: #47584e; font-size: 16px; margin-bottom: 9px; }
+.visit-address h2 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: clamp(28px,2.8vw,46px); letter-spacing: -.054em; font-weight: 400; }
+.visit-address h2 span { color: #4a6254; font-size: .6em; letter-spacing: -.035em; }
+.visit-address address { font-style: normal; color: #46524b; font-size: 16px; margin: 16px 0 21px; line-height: 1.6; }
+.visit-directions { display: table; margin: 0 0 10px; background: #1e382c; padding: 10px 17px; border-radius: 3px; color: #fff; text-decoration: none; font-weight: 400; }
+.visit-directions:hover { background: #355b46; }
+.visit-link,.visit-inquiries a,.visit-map figcaption a { text-underline-offset: 4px; }
+.visit-link { color: #395343; font-size: 15px; display: inline-block; padding: 5px 0; }
+.visit-inquiries { margin-top: clamp(25px,3.7vw,60px); padding-top: 19px; border-top: 1px solid #cbd3cd; }
+.visit-inquiries h2 { font-size: clamp(23px,2vw,32px); letter-spacing: -.04em; margin-bottom: 12px; }
+.visit-inquiries p { font-size: 16px; margin-bottom: 8px; color: #36453c; }
+.visit-person { font-weight: 400; }
+.visit-map { margin: 0; overflow: hidden; }
+.visit-map img { display: block; width: 100%; height: auto; background: #e6ebe3; }
+.visit-map figcaption { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 14px; padding: 9px 0; color: #4b5a4e; font-size: 13px; font-variant-numeric: tabular-nums; }
+.visit-interactive { margin-top: 7px; border-top: 1px solid #cbd3cd; }
+.visit-interactive summary { cursor: pointer; color: #243d30; width: fit-content; padding: 11px 0; }
+.visit-interactive iframe { display: block; border: 1px solid #bfc9bd; width: 100%; height: clamp(280px,34vw,465px); }
+.visit-photo { display: grid; grid-template-columns: minmax(130px,230px) minmax(0,1fr); align-items: end; gap: 24px; border-top: 1px solid #cbd3cd; margin-top: clamp(54px,6vw,94px); padding-top: 24px; }
+.visit-photo img { display: block; width: 100%; height: auto; }
+.visit-photo figcaption { display: grid; gap: 4px; font-size: 16px; color: #33453a; }
+.visit-photo figcaption span { font-size: 14px; color: #536057; }
+@media(max-width:760px) {
+  .visit-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
+  .visit-address { display: contents; }
+  .visit-campus { grid-row: 1; margin: 0 0 -21px; }
+  .visit-address > h2 { grid-row: 2; margin: 0 0 -17px; }
+  .visit-address address { grid-row: 3; margin: 0 0 -12px; }
+  .visit-directions { grid-row: 4; justify-self: start; margin: 0 0 -17px; }
+  .visit-address > .visit-link { grid-row: 5; }
+  .visit-cartography { grid-row: 6; }
+  .visit-inquiries { grid-row: 7; margin-top: 8px; }
+  .visit-photo { grid-template-columns: minmax(105px,35%) 1fr; gap: 15px; margin-top: 33px; }
+}
+@media(max-width:520px) {
+  .visit-map img { width: calc(100% + 140px); max-width: none; margin-inline: -70px; }
+  .visit-map figcaption { font-size: 12px; }
+}
+
+.copy-address { width: fit-content; color: #395343; font: inherit; text-decoration: underline; text-underline-offset: .22em; background: none; border: 0; cursor: pointer; padding: 5px 0; }
+.copy-status { color: #47584e; font-size: .875rem; margin-left: 10px; }
+.visit-address address { margin-bottom: 3px; }
+.visit-directions { margin-top: 15px; }
+@media(max-width:760px) {
+  .visit-address address { margin-bottom: 0; }
+  .visit-address > .copy-address { grid-row: 4; justify-self: start; margin-top: -13px; }
+  .visit-address > .copy-status { grid-row: 5; margin: -18px 0 0; }
+  .visit-address > .visit-directions { grid-row: 6; margin-top: 0; }
+  .visit-address > .visit-link { grid-row: 7; }
+  .visit-cartography { grid-row: 8; }
+  .visit-inquiries { grid-row: 9; }
+}

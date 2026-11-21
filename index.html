@@ -1,0 +1,96 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><meta name="description" content="The Land–Atmosphere Group at Pukyong National University studies land–atmosphere interactions, land data assimilation and climate prediction."><title>Home | PKNU Land–Atmosphere Group</title><link rel="icon" href="img/lag-logo.png"><link rel="stylesheet" href="style.css"><script src="site.js" defer></script>
+<link rel="stylesheet" href="bylines.css">
+<link rel="stylesheet" href="home.css">
+<link rel="preload" as="image" href="img/smap-terrain.webp" fetchpriority="high">
+<script src="smap-feed.js" defer></script>
+<script src="swath-trail.js" defer></script>
+<script src="rain-feed.js" defer></script>
+<script src="bylines.js" defer></script>
+<script src="home.js" defer></script>
+</head><body class="survey-home"><a class="skip" href="#content">Skip to content</a><header><div class="wrap mast"><a class="identity" href="index.html" aria-label="Land–Atmosphere Group home"><img src="img/lag-logo.png" alt=""><span><b>Land–Atmosphere Group</b><small>Pukyong National University</small></span></a><button class="menu" aria-controls="main-nav" aria-expanded="false">Menu</button><nav aria-label="Main navigation" id="main-nav"><a href="research.html">Research</a><a href="people.html">People</a><a href="publications.html">Publications</a><a href="journal.html">Lab journal</a><a href="contact.html">Contact</a></nav></div></header><main id="content">
+<section class="survey" aria-labelledby="lab-name">
+  <div class="pass-map">
+    <canvas id="track-map" aria-hidden="true"></canvas>
+    <div class="map-identity"><h1 id="lab-name">Land–Atmosphere<br>Group</h1>
+      <p>We study how water stored on land shapes weather and climate.</p></div>
+    <p class="map-date">Pass replay <time id="observed-day">Checking observation date…</time></p>
+    <div class="map-key"><span>Surface soil moisture <small>(cm³/cm³)</small></span>
+      <img src="img/smap-colors.png" width="356" height="10" alt=""><div><span>0</span><span>0.30</span><span>≥0.60</span></div>
+      <span class="rain-title">Precipitation <small>(mm/h)</small></span>
+      <div class="rain-legend"><span><i></i>0.1–&lt;1</span><span><i></i>1–&lt;5</span><span><i></i>≥5</span></div>
+      <small id="rain-window">IMERG · checking frame</small></div>
+    <div class="sample-label" id="track-sample" hidden><span>Mapped soil moisture</span><b id="sample-value"></b><small id="sample-location"></small><small id="sample-rain" hidden></small></div>
+  </div>
+  <div class="replay-strip"><div class="wrap replay-bar">
+    <div class="pass-meta"><b id="pass-id">Observations replay</b><span id="pass-time">NASA satellite archive</span></div>
+    <div class="day-scale" aria-hidden="true"><div id="pass-progress"></div><span>00 UTC</span><span>12</span><span>24</span></div>
+    <button type="button" id="toggle-replay" hidden>Pause</button>
+    <details class="map-info"><summary>Map notes</summary><div>
+      <strong>How to read the replay</strong>
+      <p>Coloured strips appear behind the SMAP marker and stay on the fixed map. The marker follows the approximate centre of each archived swath. Soil moisture comes from the corresponding morning or evening 9 km composite. Its readout gives the colour interval at the sampled grid cell.</p>
+      <p>IMERG rates are sampled every 2° for the last completed half-hour of the replay. Slanted strokes show rain and dots show snow at rates of 0.1 mm/h or higher.</p>
+      <p>The date is in UTC. The replay uses the latest complete archive date up to yesterday. The times below the map are the recorded start and end of each SMAP pass. Rain windows follow the replay’s estimated time within that pass.</p>
+      <a id="map-origin" href="https://worldview.earthdata.nasa.gov/?l=SMAP_L3_Passive_Enhanced_Day_Soil_Moisture&amp;t=2026-11-18">NASA Worldview</a> · <a href="https://doi.org/10.5067/M20OXIZHY3RJ">SMAP</a> · <a href="https://gpm.nasa.gov/data/imerg">IMERG</a> · <a href="https://gibs.earthdata.nasa.gov/">Basemap</a>
+    </div></details>
+  </div></div>
+</section>
+<div class="affiliation"><div class="wrap affiliation-content">
+  <a href="https://www.pknu.ac.kr/eng"><img src="img/pknu-wordmark.png" alt="Pukyong National University" width="822" height="84"></a>
+  <span>Department of Environmental Atmospheric Sciences<br>Busan, Republic of Korea</span>
+</div></div>
+<section id="research" class="tower-study wrap">
+  <div class="study-heading"><p>Boseong, South Korea</p><h2>How does the land<br>shape our weather?</h2></div>
+  <div class="tower-layout">
+    <figure class="tower-observations"><figcaption>Measurement heights at Boseong</figcaption><dl class="height-profile">
+        <div><dt>300 m</dt><dd>Air temperature &amp; humidity</dd></div>
+        <div><dt>2.5 m</dt><dd>Sensible &amp; latent heat fluxes</dd></div>
+        <div><dt>−5 cm</dt><dd>Surface soil moisture</dd></div>
+      </dl></figure>
+    <div class="profile-column" id="boseong-seasons"><h3>Four seasons at Boseong</h3>
+      <p class="fit-context">How much surface energy goes into evaporation? Seasonal fits from the tower observations, 2016–2019.</p>
+      <div class="fit-controls" role="group" aria-label="Compare seasons"><button type="button" data-season="Spring" data-note="In spring, wetter soil generally coincided with a larger share of surface energy going into evaporation." data-r="0.35" style="--fit-color:#657736" aria-pressed="false">Spring</button><button type="button" data-season="Summer" data-note="In summer, evaporation took a large share of the available energy across almost the whole observed soil moisture range." data-r="0.01" style="--fit-color:#006f89" aria-pressed="true">Summer</button><button type="button" data-season="Autumn" data-note="In autumn, the share of energy used for evaporation rose as the soil became wetter." data-r="0.59" style="--fit-color:#93512d" aria-pressed="false">Autumn</button><button type="button" data-season="Winter" data-note="In winter, a small change in soil moisture corresponded to the steepest change in evaporative fraction." data-r="0.51" style="--fit-color:#435c89" aria-pressed="false">Winter</button></div>
+      <svg class="fit-plot" viewBox="0 0 435 213" role="img" aria-labelledby="fit-title fit-desc"><title id="fit-title">Seasonal fits at Boseong</title><desc id="fit-desc">Fitted evaporative fraction rises steeply with soil moisture in winter and stays nearly flat in summer. Lines show regressions from figure 6 of Han et al. (2025).</desc><text x="10" y="14">Evaporative fraction</text><path class="fit-grid" d="M53 162.00H409"/><text x="42" y="166.00" text-anchor="end">0.4</text><path class="fit-grid" d="M53 118.67H409"/><text x="42" y="122.67" text-anchor="end">0.6</text><path class="fit-grid" d="M53 75.33H409"/><text x="42" y="79.33" text-anchor="end">0.8</text><path class="fit-grid" d="M53 32.00H409"/><text x="42" y="36.00" text-anchor="end">1.0</text><text x="72.78" y="182" text-anchor="middle">0.15</text><text x="171.67" y="182" text-anchor="middle">0.20</text><text x="270.56" y="182" text-anchor="middle">0.25</text><text x="369.44" y="182" text-anchor="middle">0.30</text><text x="231" y="207" text-anchor="middle">Soil moisture (m³/m³)</text><path data-fit="Spring" stroke="#657736" d="M112.33 118.95L268.58 82.83"><title>Spring, r = 0.35</title></path><path data-fit="Summer" stroke="#006f89" d="M72.78 55.18L321.98 54.64"><title>Summer, r = 0.01</title></path><path data-fit="Autumn" stroke="#93512d" d="M171.67 101.77L399.11 33.49"><title>Autumn, r = 0.59</title></path><path data-fit="Winter" stroke="#435c89" d="M191.44 136.72L260.67 58.83"><title>Winter, r = 0.51</title></path></svg>
+      <p class="fit-reading" aria-live="polite"><strong>Summer · r = 0.01</strong> <span>In summer, evaporation took a large share of the available energy across almost the whole observed soil moisture range.</span></p>
+      <a class="paper-ref" href="https://j-komes.or.kr/_PR/view/index.php?aidx=45265&amp;bidx=4097">Han et al. (2025), figure 6</a>
+    </div>
+  </div>
+  <nav aria-label="Explore research areas" class="research-links"><a href="research.html#coupling">Land–atmosphere coupling</a><a href="research.html#assimilation">Land data assimilation</a><a href="research.html#prediction">Climate prediction</a></nav>
+</section><section class="dispatch"><div class="wrap"><div class="folio-head"><h2>Selected papers</h2><a href="publications.html">Publication archive</a></div>
+<div class="paper-spread"><article class="paper-cut paper-rain">
+      <div class="cut-figure"><img loading="lazy" alt="" src="img/fig-rain.webp"></div>
+      <div class="cut-copy"><small>Hydrology and Earth System Sciences · 2026</small>
+      <h3><button data-study="rain" type="button" aria-label="Preview: When does rain peak?">When does rain peak?</button></h3>
+      <p>Ground observations, satellites and reanalyses tell different stories about the timing of afternoon rain.</p>
+      <span data-byline="Gyuyeon Choi, Eunkyo Seo, Paul A. Dirmeyer">Gyuyeon Choi, Eunkyo Seo, Paul A. Dirmeyer</span><span class="cut-action" aria-hidden="true">Preview study <b>+</b></span></div></article><article class="paper-cut paper-soil">
+      <div class="cut-figure"><img loading="lazy" alt="" src="img/fig-soil.webp"></div>
+      <div class="cut-copy"><small>Hydrology and Earth System Sciences · 2026</small>
+      <h3><button data-study="soil" type="button" aria-label="Preview: Correcting daily soil moisture cycles">Correcting daily soil moisture cycles</button></h3>
+
+      <span data-byline="Junnyeong Han, Eunkyo Seo, Paul A. Dirmeyer">Junnyeong Han, Eunkyo Seo, Paul A. Dirmeyer</span><span class="cut-action" aria-hidden="true">Preview study <b>+</b></span></div></article><article class="paper-cut paper-snow">
+      <div class="cut-figure"><img loading="lazy" alt="" src="img/fig-snow.webp"></div>
+      <div class="cut-copy"><small>Geoscientific Model Development · 2026</small>
+      <h3><button data-study="snow" type="button" aria-label="Preview: How snow changes seasonal forecasts">How snow changes seasonal forecasts</button></h3>
+
+      <span data-byline="Eunkyo Seo, Paul A. Dirmeyer, Sunlae Tak">Eunkyo Seo, Paul A. Dirmeyer, Sunlae Tak</span><span class="cut-action" aria-hidden="true">Preview study <b>+</b></span></div></article></div><dialog class="paper-dialog" id="study-rain" aria-labelledby="title-rain">
+      <div class="dialog-body"><button class="dialog-close" type="button" aria-label="Close paper preview">Close</button>
+        <small>Choi, Seo &amp; Dirmeyer · HESS, 2026</small><h2 id="title-rain">When does rain peak?</h2><span data-byline="Gyuyeon Choi, Eunkyo Seo, Paul A. Dirmeyer">Gyuyeon Choi, Eunkyo Seo, Paul A. Dirmeyer</span><p>Ground stations, satellite products and reanalyses place the afternoon rainfall maximum at different times. The study links these timing differences to how products observe or represent convection.</p>
+        <figure><img src="img/fig-rain.webp" alt="Figure 15. From daytime surface heating to the late-afternoon precipitation peak."><figcaption>Figure 15. From daytime surface heating to the late-afternoon precipitation peak. <a href="https://doi.org/10.5194/hess-30-6927-2026">Choi et al. (2026)</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></figcaption></figure>
+        <a class="primary" href="https://doi.org/10.5194/hess-30-6927-2026">Read the full paper</a>
+      </div>
+    </dialog><dialog class="paper-dialog" id="study-soil" aria-labelledby="title-soil">
+      <div class="dialog-body"><button class="dialog-close" type="button" aria-label="Close paper preview">Close</button>
+        <small>Han, Seo &amp; Dirmeyer · HESS, 2026</small><h2 id="title-soil">Correcting daily soil moisture cycles</h2><span data-byline="Junnyeong Han, Eunkyo Seo, Paul A. Dirmeyer">Junnyeong Han, Eunkyo Seo, Paul A. Dirmeyer</span><p>Soil temperature can distort the daily cycle measured by dielectric probes. A Fourier filtering method uses land-model patterns to correct the daily signal and improve agreement with independent observations.</p>
+        <figure><img src="img/fig-soil.webp" alt="Figure 4. Power spectra of soil moisture from probes and land-model datasets."><figcaption>Figure 4. Power spectra of soil moisture from probes and land-model datasets. <a href="https://doi.org/10.5194/hess-30-2207-2026">Han et al. (2026)</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></figcaption></figure>
+        <a class="primary" href="https://doi.org/10.5194/hess-30-2207-2026">Read the full paper</a>
+      </div>
+    </dialog><dialog class="paper-dialog" id="study-snow" aria-labelledby="title-snow">
+      <div class="dialog-body"><button class="dialog-close" type="button" aria-label="Close paper preview">Close</button>
+        <small>Seo, Dirmeyer &amp; Tak · GMD, 2026</small><h2 id="title-snow">How snow changes seasonal forecasts</h2><span data-byline="Eunkyo Seo, Paul A. Dirmeyer, Sunlae Tak">Eunkyo Seo, Paul A. Dirmeyer, Sunlae Tak</span><p>Introducing a multi-layer snow scheme changes how snow insulates the soil, delays spring melt, and influences soil wetness and surface cooling into the following summer.</p>
+        <figure><img src="img/fig-snow.webp" alt="Figure 3. Spatial differences in spring snow, albedo and summer soil moisture across forecast configurations."><figcaption>Figure 3. Spatial differences in spring snow, albedo and summer soil moisture across forecast configurations. <a href="https://doi.org/10.5194/gmd-19-1261-2026">Seo et al. (2026)</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></figcaption></figure>
+        <a class="primary" href="https://doi.org/10.5194/gmd-19-1261-2026">Read the full paper</a>
+      </div>
+    </dialog></div></section><section class="field-notes wrap"><div class="folio-head"><h2>Field notes</h2><a href="journal.html">Lab journal</a></div><ul class="public-field-notes">
+  <li><time datetime="2026-07">July 2026</time><span>Pan-GLASS meeting, Stuttgart</span></li>
+  <li><time datetime="2026-06">June 2026</time><span>National Taiwan University visit</span></li>
+  <li><time datetime="2026-03">March 2026</time><span>Spring field trip, Andong</span></li>
+</ul></section></main><footer><div class="wrap foot"><a class="identity" href="index.html" aria-label="Land–Atmosphere Group home"><img src="img/lag-logo.png" alt=""><span><b>Land–Atmosphere Group</b><small>Pukyong National University</small></span></a><div>Department of Environmental Atmospheric Sciences<br>Busan, Republic of Korea</div><a href="contact.html">Contact the lab</a></div></footer><script src="season-study.js" defer></script></body></html>
