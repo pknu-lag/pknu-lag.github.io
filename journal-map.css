@@ -1,5 +1,12 @@
 .journal-places { padding:clamp(18px,2.3vw,36px) 0 20px; }
-.journal-places h2 { font-size:clamp(29px,2.65vw,43px); margin-bottom:20px; letter-spacing:-.04em; }
+.life-heading { display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:6px 18px; padding:clamp(28px,3.2vw,46px) 0 10px; border-bottom:1px solid #ccd7d2; }
+.life-heading h1 { margin:0; font:400 clamp(30px,2.85vw,40px)/1.14 var(--type-sans); letter-spacing:-.038em; }
+.life-heading nav { display:flex; gap:clamp(15px,1.8vw,25px); }
+.life-heading nav a { display:inline-flex; align-items:center; min-height:44px; padding:0; color:#38564b; font:400 15px/1.3 var(--type-sans); text-decoration:underline; text-decoration-color:#b4c6bd; text-underline-offset:4px; }
+.life-heading nav a:hover,.life-heading nav a:focus-visible { text-decoration-color:currentColor; }
+.journal-places h2,#gallery .sectionhead h2,#news .sectionhead h2 { margin:0; font:400 clamp(22px,1.9vw,28px)/1.2 var(--type-sans); letter-spacing:-.03em; }
+.journal-places h2 { margin-bottom:16px; }
+#gallery .journal-year h4 { font-size:clamp(20px,1.8vw,26px); }
 .places-layout { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:clamp(18px,2.2vw,34px); align-items:start; }
 .places-figure,.places-index { min-width:0; margin:0; }
 .places-map { height:clamp(295px,28vw,405px); position:relative; isolation:isolate; background:#e4eff1; border:1px solid #d4e0dc; border-radius:5px; font-family:var(--type-sans); }
