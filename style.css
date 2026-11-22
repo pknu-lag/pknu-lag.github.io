@@ -111,7 +111,8 @@ body:not(.orbital-home) > header nav a[aria-current] { color: #294c58; }
 .research-text h2 { margin-bottom: 20px; font: 400 clamp(30px,3.3vw,50px)/1.1 var(--type-sans); letter-spacing: -.024em; }
 .research-text h3 { font-size: clamp(19px,1.55vw,27px); }
 .research-plate > div { background: #f1f4f0; }
-.research-plate > div > img { display: block; width: 100%; height: clamp(210px,23vw,340px); object-fit: cover; }
+.research-plate > div > a { display:block; }
+.research-plate > div img { display: block; width: 100%; height: clamp(210px,23vw,340px); object-fit: cover; }
 #prediction .research-plate > div > img { object-fit: contain; padding: 20px; background: #f9faf8; }
 .research-plate figcaption,.campus-photo figcaption { font-size: 13px; color: var(--muted); margin-top: 9px; }
 .research-plate figcaption a { text-underline-offset: 3px; }
@@ -196,3 +197,18 @@ footer { background: #111b16; color: #fff; border-top: 0; }
 .tower-summary .height-profile div { display: grid; grid-template-columns: 4.75rem 1fr; gap: 8px; align-items: baseline; padding: 8px 0; border-top: 1px solid #dde4e4; }
 .tower-summary dt { font-size: 1.15rem; }
 .tower-summary dd { margin: 0; }
+
+/* The lab signature in the primary masthead. */
+header .mast > .identity { gap:clamp(9px,1vw,15px); min-height:clamp(76px,6vw,89px); }
+header .mast > .identity img { width:clamp(56px,4.7vw,69px); height:auto; aspect-ratio:1; }
+header .mast > .identity b { font-size:clamp(20px,1.68vw,26px); line-height:1.12; letter-spacing:-.045em; }
+header .mast > .identity small { font-size:clamp(13px,1vw,15px); line-height:1.5; }
+@media(max-width:600px) {
+  header .mast > .identity { min-height:72px; gap:8px; }
+  header .mast > .identity img { width:clamp(44px,12vw,54px); }
+  header .mast > .identity b { font-size:clamp(16.5px,4.65vw,21px); }
+  header .mast > .identity small { font-size:clamp(12px,3.3vw,14px); }
+}
+@media(max-width:360px) {
+  header .mast .menu { width:44px; padding:0; gap:0; font-size:0; justify-content:center; }
+}
