@@ -1,10 +1,9 @@
 /* IMERG V07 multisatellite half-hour precipitation rate, NASA GIBS. The
-   homepage displays the latest published half-hour through yesterday UTC.
+   replay uses the half-hour interval containing the SMAP replay clock.
    The displayed grid is sampled at one degree from the 0.1° science product. */
 window.RainFeed = (() => {
   const width=360, height=180, halfHour=1800000, dayMs=86400000;
   const offlineFirst=Date.parse('2026-11-17T22:30:00Z'), slotsInAtlas=52;
-  const snapshot = '2026-11-21T23:30:00.000Z';
   const layer='IMERG_Precipitation_Rate_30min';
   const gibs='https://gibs.earthdata.nasa.gov';
   const frames=new Map(), pending=new Map();
@@ -19,13 +18,13 @@ window.RainFeed = (() => {
     else clock=utc instanceof Date ? utc.getTime() : Date.parse(utc);
     // First and last catalogued half-orbits can straddle UTC midnight.
     if (!Number.isFinite(day) || !Number.isFinite(clock) || clock<day-2*3600000 || clock>day+dayMs+2*3600000) return null;
-    return new Date(Math.floor(clock/halfHour)*halfHour-halfHour).toISOString();
+    return new Date(Math.floor(clock/halfHour)*halfHour).toISOString();
   }
 
   function query(base,args) {return base+'?'+new URLSearchParams(args);}
 
-  async function request(url,type,cache='default') {
-    const resp=await fetch(url,{cache,signal:AbortSignal.timeout(10000)});
+  async function request(url,type) {
+    const resp=await fetch(url,{cache:type==='text'?'no-cache':'default',signal:AbortSignal.timeout(10000)});
     if (!resp.ok) throw new Error('IMERG resource unavailable');
     return resp[type]();
   }
@@ -59,14 +58,14 @@ window.RainFeed = (() => {
     return palettePromise;
   }
 
-  async function domains() {
+  async function allowed(ms) {
     // GetMap alone can yield an empty PNG in a temporal gap. Verify the
     // half-hour actually exists in the layer's published temporal domain.
-    if (!domainPromise || Date.now()-domainChecked>=15*60000) {
+    if (!domainPromise || Date.now()-domainChecked>3600000) {
       domainChecked=Date.now();
       domainPromise=request(query(gibs+'/wmts/epsg4326/best/wmts.cgi',{
         SERVICE:'WMTS',VERSION:'1.0.0',REQUEST:'DescribeDomains',LAYER:layer,TILEMATRIXSET:'2km'
-      }),'text','no-cache').then(xml=>{
+      }),'text').then(xml=>{
         const doc=new DOMParser().parseFromString(xml,'application/xml');
         const time=[...doc.querySelectorAll('DimensionDomain')].find(el=>
           [...el.children].some(e=>e.localName==='Identifier' && e.textContent==='time'));
@@ -76,15 +75,10 @@ window.RainFeed = (() => {
         });
       }).catch(e=>{domainPromise=null;throw e;});
     }
-    return domainPromise;
+    return (await domainPromise).some(([a,b])=>ms>=a && ms<=b);
   }
 
   async function raster(ms) {
-    if (ms === Date.parse(snapshot)) {
-      const image = await imageAt('img/imerg-2026-11-21-2330.png');
-      if (image.naturalWidth !== width || image.naturalHeight !== height) throw new Error('Invalid saved grid');
-      return {image,x:0,y:0};
-    }
     const frameIndex=(ms-offlineFirst)/halfHour;
     if (frameIndex>=0 && frameIndex<slotsInAtlas && Number.isInteger(frameIndex)) {
       if (!atlasPromise) atlasPromise=imageAt('img/imerg-2026-11-18.png').catch(e=>{atlasPromise=null;throw e;});
@@ -92,7 +86,7 @@ window.RainFeed = (() => {
       if (image.naturalWidth!==width*4 || image.naturalHeight!==height*13) throw new Error('Invalid IMERG atlas');
       return {image,x:(frameIndex%4)*width,y:Math.floor(frameIndex/4)*height};
     }
-    if (!(await domains()).some(([a,b])=>ms>=a && ms<=b)) throw new Error('No matching IMERG time window');
+    if (!await allowed(ms)) throw new Error('No matching IMERG time window');
     const image=await imageAt(query(gibs+'/wms/epsg4326/best/wms.cgi',{
       SERVICE:'WMS',VERSION:'1.1.1',REQUEST:'GetMap',LAYERS:layer,STYLES:'',
       TIME:new Date(ms).toISOString().replace('.000Z','Z'),SRS:'EPSG:4326',BBOX:'-180,-90,180,90',
@@ -146,47 +140,5 @@ window.RainFeed = (() => {
     if(typeof callback==='function') result.then(callback);
     return result;
   }
-  function watchLatest(onFrame, onStatus) {
-    let newest = -Infinity, lastCheck = 0, running = false;
-    const interval = 15 * 60000;
-    function publish(frame) {
-      if (frame && Date.parse(frame.start) > newest) {
-        newest = Date.parse(frame.start);
-        onFrame(frame);
-      }
-    }
-    async function refresh() {
-      if (document.hidden || running || Date.now() - lastCheck < interval) return;
-      running = true;
-      lastCheck = Date.now();
-      try {
-        const cutoff = Math.floor(Date.now() / dayMs) * dayMs - halfHour;
-        const ranges = (await domains()).sort((a,b) => b[1] - a[1]);
-        let attempts = 0;
-        for (const [first,last] of ranges) {
-          for (let t = Math.min(cutoff,last); t >= first && attempts < 6; t -= halfHour) {
-            if (t === newest) { onStatus('Archive checked'); return; }
-            if (t < newest) { onStatus('Showing last verified frame'); return; }
-            attempts++;
-            const frame = await load(new Date(t).toISOString().slice(0,10), t + halfHour);
-            if (frame) {
-              publish(frame);
-              onStatus(attempts === 1 ? 'Archive checked' : 'Showing last verified frame');
-              return;
-            }
-          }
-          if (attempts >= 6) break;
-        }
-        onStatus('Showing last verified frame');
-      } catch { onStatus('Archive check unavailable'); }
-      finally { running = false; }
-    }
-    if (Date.parse(snapshot) < Math.floor(Date.now() / dayMs) * dayMs) {
-      load(snapshot.slice(0,10), Date.parse(snapshot) + halfHour).then(publish);
-    }
-    refresh();
-    setInterval(refresh, interval);
-    document.addEventListener('visibilitychange', refresh);
-  }
-  return {slot,load,watchLatest};
+  return {slot,load};
 })();

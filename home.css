@@ -91,7 +91,7 @@
 .replay-bar { display:flex; align-items:center; gap:clamp(12px,2.7vw,48px); padding-block:13px; }
 .pass-meta { display:grid; line-height:1.35; }
 .pass-meta b { font-size:14px; font-weight:400; }
-.pass-meta span { color:#d0ddda; font-size:13px; font-variant-numeric:tabular-nums; }
+.pass-meta time { color:#d0ddda; font-size:13px; font-variant-numeric:tabular-nums; }
 .day-scale { position:relative; flex:1; display:flex; justify-content:space-between; align-items:end; padding-top:7px; color:#c8d3cf; font:12px var(--type-sans); border-top:1px solid #526461; }
 .day-scale > div { position:absolute; height:2px; top:-1px; left:0; background:#d8bb67; }
 .day-scale > div::after { content:""; height:7px;width:2px;background:#e5d19a;position:absolute;right:0;bottom:0; }
