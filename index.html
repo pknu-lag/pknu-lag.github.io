@@ -1,12 +1,12 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><meta name="description" content="The Land–Atmosphere Group at Pukyong National University studies land–atmosphere interactions, land data assimilation and climate prediction."><title>Home | PKNU Land–Atmosphere Group</title><link rel="icon" href="img/lag-logo.png"><link rel="stylesheet" href="style.css"><script src="site.js" defer></script>
 <link rel="stylesheet" href="bylines.css">
-<link rel="stylesheet" href="home.css?v=boseong2">
+<link rel="stylesheet" href="home.css?v=research3">
 <link rel="preload" as="image" href="img/smap-terrain.webp" fetchpriority="high">
 <script src="smap-feed.js" defer></script>
 <script src="swath-trail.js" defer></script>
 <script src="rain-feed.js" defer></script>
 <script src="bylines.js" defer></script>
-<script src="home.js?v=boseong2" defer></script>
+<script src="home.js?v=research3" defer></script>
 </head><body class="survey-home"><a class="skip" href="#content">Skip to content</a><header><div class="wrap mast"><a class="identity" href="index.html" aria-label="Land–Atmosphere Group home"><img src="img/lag-logo.png" alt=""><span><b>Land–Atmosphere Group</b><small>Pukyong National University</small></span></a><button class="menu" aria-controls="main-nav" aria-expanded="false">Menu</button><nav aria-label="Main navigation" id="main-nav"><a href="research.html">Research</a><a href="people.html">People</a><a href="publications.html">Publications</a><a href="journal.html">Lab journal</a><a href="contact.html">Contact</a></nav></div></header><main id="content">
 <section class="survey" aria-labelledby="lab-name">
   <div class="pass-map">
@@ -39,42 +39,13 @@
   <a href="https://www.pknu.ac.kr/eng"><img src="img/pknu-wordmark.png" alt="Pukyong National University" width="822" height="84"></a>
   <span>Department of Environmental Atmospheric Sciences<br>Busan, Republic of Korea</span>
 </div></div>
-<section id="research" class="boseong-study wrap" aria-labelledby="boseong-title">
-  <div id="boseong-seasons" class="boseong-layout">
-    <div class="boseong-intro">
-      <h2 id="boseong-title">Above the rice&nbsp;fields of Boseong</h2>
-      <p>On Korea’s south coast, a 307-metre weather tower stands among rice paddies. Our group used four years of observations (2016–2019) to trace how water moves from the soil into the air.</p>
-    </div>
-    <figure class="boseong-landscape">
-      <div class="site-image">
-        <img src="img/boseong-sentinel2-2018.webp" width="1050" height="800" loading="lazy" alt="Sentinel-2 view of rice fields between wooded hills and the coast at Boseong, South Korea.">
-        <a class="tower-pin" href="journal.html#photo-01" aria-label="View the field team at Boseong observation tower"><span>Boseong tower</span></a>
-        <span class="site-coordinate">34.76° N &nbsp;127.21° E</span>
-      </div>
-      <figcaption>Sentinel-2 cloudless 2018 · Modified Copernicus Sentinel data (2017–2018), © <a href="https://maps.eox.at/">EOX</a>. Regional crop, <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</figcaption>
-    </figure>
-    <div class="boseong-results">
-      <h3>Soil moisture and evaporation</h3>
-      <div class="season-switch" role="group" aria-label="Compare seasons" hidden>
-          <button type="button" data-season="Spring" aria-controls="boseong-reading" aria-pressed="false">Spring</button>
-          <button type="button" data-season="Summer" aria-controls="boseong-reading" aria-pressed="true">Summer</button>
-          <button type="button" data-season="Autumn" aria-controls="boseong-reading" aria-pressed="false">Autumn</button>
-          <button type="button" data-season="Winter" aria-controls="boseong-reading" aria-pressed="false">Winter</button>
-      </div>
-      <div id="boseong-reading" aria-live="polite">
-          <div data-fit="Spring"><p class="season-range">March–May</p><p>As the soil grew wetter, a larger share of surface energy went into evaporation.</p><small>Correlation <i>r</i> = 0.35</small></div>
-          <div data-fit="Summer"><p class="season-range">June–August</p><p>Evaporation accounted for a large share of surface energy, even as soil moisture varied.</p><small>Correlation <i>r</i> = 0.01</small></div>
-          <div data-fit="Autumn"><p class="season-range">September–November</p><p>The link was strongest in autumn. Wetter soils were associated with a larger share of energy going into evaporation.</p><small>Correlation <i>r</i> = 0.59</small></div>
-          <div data-fit="Winter"><p class="season-range">December–February</p><p>Evaporative fraction was most sensitive to soil moisture in winter. A small change in soil moisture corresponded to the steepest change in the fitted relationship.</p><small>Correlation <i>r</i> = 0.51</small></div>
-      </div>
-      <details class="boseong-method">
-        <summary>About the measurements</summary>
-        <p>Figure 6 compares soil moisture 5 cm below the surface with evaporative fraction, the share of turbulent heat flux carried as latent heat. The tower site recorded surface heat fluxes at 2.5 m and air temperature and humidity up to 300 m. Each correlation uses daily values averaged over 2016–2019.</p>
-      </details>
-      <a class="boseong-paper" href="https://doi.org/10.14191/Atmos.2025.35.2.225">Read the study by Han et al. (2025)</a>
-    </div>
-  </div>
-  <nav aria-label="Explore research areas" class="research-links"><a href="research.html#coupling">Land–atmosphere coupling</a><a href="research.html#assimilation">Land data assimilation</a><a href="research.html#prediction">Climate prediction</a></nav>
+<section id="research" class="home-research wrap" aria-labelledby="research-heading">
+  <h2 id="research-heading">Our research</h2>
+  <nav aria-label="Research areas">
+    <a href="research.html#coupling"><h3>Land–atmosphere coupling</h3><p>How water and heat move between the land and the air.</p></a>
+    <a href="research.html#assimilation"><h3>Land data assimilation</h3><p>Combining satellite observations with models to estimate soil moisture.</p></a>
+    <a href="research.html#prediction"><h3>Climate prediction</h3><p>How soil moisture, vegetation and snow influence forecasts of extremes.</p></a>
+  </nav>
 </section><section class="dispatch"><div class="wrap"><div class="folio-head"><h2>Selected papers</h2><a href="publications.html">Publication archive</a></div>
 <div class="paper-spread"><article class="paper-cut paper-rain">
       <div class="cut-figure"><img loading="lazy" alt="" src="img/fig-rain.webp"></div>
@@ -109,4 +80,4 @@
         <figure><img src="img/fig-snow.webp" alt="Figure 3. Spatial differences in spring snow, albedo and summer soil moisture across forecast configurations."><figcaption>Figure 3. Spatial differences in spring snow, albedo and summer soil moisture across forecast configurations. <a href="https://doi.org/10.5194/gmd-19-1261-2026">Seo et al. (2026)</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></figcaption></figure>
         <a class="primary" href="https://doi.org/10.5194/gmd-19-1261-2026">Read the full paper</a>
       </div>
-    </dialog></div></section><section class="field-notes wrap"><div class="folio-head"><h2>Field notes</h2><a href="journal.html">Lab journal</a></div><div class="photo-spread"><figure><a href="journal.html#photo-05" aria-label="Open National Taiwan University photograph"><img loading="lazy" alt="Lab visitors at National Taiwan University" src="img/05-national-taiwan-university-4-8-jun-2026.webp"></a><figcaption><span><b>Taipei</b> National Taiwan University visit</span><small>June 2026</small></figcaption></figure><figure><a href="journal.html#photo-04" aria-label="Open Stuttgart photograph"><img loading="lazy" alt="Lab members at Pan-GLASS in Stuttgart" src="img/04-pan-glass2026-stuttgart-germany-5-9-jul-2026.webp"></a><figcaption><span><b>Stuttgart</b> Pan-GLASS meeting</span><small>July 2026</small></figcaption></figure><figure><a href="journal.html#photo-06" aria-label="Open Andong photograph"><img loading="lazy" alt="Researchers on the group field trip to Andong" src="img/06-andong-field-trip-27-28-mar-2026.webp"></a><figcaption><span><b>Andong</b> Spring field trip</span><small>March 2026</small></figcaption></figure></div></section></main><footer><div class="wrap foot"><a class="identity" href="index.html" aria-label="Land–Atmosphere Group home"><img src="img/lag-logo.png" alt=""><span><b>Land–Atmosphere Group</b><small>Pukyong National University</small></span></a><div>Department of Environmental Atmospheric Sciences<br>Busan, Republic of Korea</div><a href="contact.html">Contact the lab</a></div></footer><script src="season-study.js?v=boseong2" defer></script></body></html>
+    </dialog></div></section><section class="field-notes wrap"><div class="folio-head"><h2>Field notes</h2><a href="journal.html">Lab journal</a></div><div class="photo-spread"><figure><a href="journal.html#photo-05" aria-label="Open National Taiwan University photograph"><img loading="lazy" alt="Lab visitors at National Taiwan University" src="img/05-national-taiwan-university-4-8-jun-2026.webp"></a><figcaption><span><b>Taipei</b> National Taiwan University visit</span><small>June 2026</small></figcaption></figure><figure><a href="journal.html#photo-04" aria-label="Open Stuttgart photograph"><img loading="lazy" alt="Lab members at Pan-GLASS in Stuttgart" src="img/04-pan-glass2026-stuttgart-germany-5-9-jul-2026.webp"></a><figcaption><span><b>Stuttgart</b> Pan-GLASS meeting</span><small>July 2026</small></figcaption></figure><figure><a href="journal.html#photo-06" aria-label="Open Andong photograph"><img loading="lazy" alt="Researchers on the group field trip to Andong" src="img/06-andong-field-trip-27-28-mar-2026.webp"></a><figcaption><span><b>Andong</b> Spring field trip</span><small>March 2026</small></figcaption></figure></div></section></main><footer><div class="wrap foot"><a class="identity" href="index.html" aria-label="Land–Atmosphere Group home"><img src="img/lag-logo.png" alt=""><span><b>Land–Atmosphere Group</b><small>Pukyong National University</small></span></a><div>Department of Environmental Atmospheric Sciences<br>Busan, Republic of Korea</div><a href="contact.html">Contact the lab</a></div></footer></body></html>

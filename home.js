@@ -1,4 +1,8 @@
 (() => {
+  if (location.hash === '#boseong-seasons') {
+    location.replace('research.html#boseong-seasons');
+    return;
+  }
   const figure = document.querySelector('.pass-map');
   const canvas = document.querySelector('#track-map');
   const context = canvas.getContext('2d');

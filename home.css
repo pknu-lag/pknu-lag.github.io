@@ -108,8 +108,6 @@
 .survey-home .affiliation-content { min-height: 98px; }
 .survey-home .affiliation-content img { width:clamp(310px,39vw,620px); max-width:100%; }
 .survey-home .affiliation-content span { text-align:right; color:#465147; font-size:14px; }
-.research-links {display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px 24px;border-block:1px solid #b8beb0;margin-top:clamp(25px,4vw,56px);padding:9px 0;}
-.research-links a {font-size:clamp(17px,1.45vw,23px);font-weight:400;text-decoration:underline;text-decoration-color:#a7afa0;}
 @media(prefers-reduced-motion:no-preference){
   @keyframes sheet-title {from {transform:translateY(.2em);opacity:.2;} to {transform:none;opacity:1;}}
 
@@ -134,46 +132,14 @@
   .survey-home .affiliation-content {justify-content:flex-start;gap:8px;min-height:86px;}
   .survey-home .affiliation-content img {width:min(89vw,410px);}
   .survey-home .affiliation-content span {text-align:left;font-size:13px;}
-  .research-links {display:grid;}
-  .research-links a {padding:7px 0;}
 }
 @media(prefers-reduced-motion:reduce){.photo-spread img {transition:none;}}
 
-
-.boseong-study { padding-block: clamp(48px,6vw,96px); color: #19312e; }
-.boseong-layout {
-  display:grid; grid-template-columns:minmax(0,1.32fr) minmax(0,1fr);
-  grid-template-areas:"land intro" "land results"; align-content:center;
-  column-gap:clamp(36px,5vw,82px); scroll-margin-top:32px;
-}
-.boseong-intro { grid-area:intro; align-self:end; }
-.boseong-intro h2 { margin:0; max-width:15ch; font:400 clamp(38px,3.9vw,62px)/1.03 var(--type-sans); letter-spacing:-.05em; text-wrap:balance; }
-.boseong-intro p { font-size:clamp(16px,1.16vw,19px); line-height:1.52; margin:16px 0 0; max-width:48ch; }
-.boseong-landscape { grid-area:land; align-self:center; }
-.site-image { position:relative; color:white; background:#31504b; }
-.site-image img { display:block; width:100%; height:auto; }
-.tower-pin { position:absolute; left:45.04%; top:43.95%; transform:translate(-9px,-50%); display:flex; gap:8px; align-items:center; min-height:44px; color:white; text-decoration:none; }
-.tower-pin::before { content:""; box-sizing:border-box; width:18px; height:18px; border:2px solid white; border-radius:50%; background:#25423d; box-shadow:0 0 0 4px #24393266; }
-.tower-pin span { padding:4px 8px; background:#172d29ed; font-size:14px; }
-.tower-pin:hover span,.tower-pin:focus-visible span { text-decoration:underline; text-underline-offset:3px; }
-.site-coordinate { position:absolute; left:14px; bottom:12px; font-size:12px; color:white; text-shadow:0 1px 3px black; }
-.boseong-landscape figcaption { margin-top:9px; font:400 12px/1.45 var(--type-sans); color:#526561; }
-.boseong-landscape figcaption a,.boseong-paper { text-underline-offset:3px; }
-.boseong-results { grid-area:results; align-self:start; padding-top:clamp(20px,2vw,32px); }
-.boseong-results h3 { font-size:19px; line-height:1.3; font-weight:500; letter-spacing:-.02em; }
-.season-switch { display:flex; width:fit-content; max-width:100%; gap:clamp(12px,2vw,26px); border-bottom:1px solid #c3cfcb; }
-.season-switch button { padding:0 0 1px; min-height:44px; background:none; border:0; border-bottom:2px solid transparent; margin-bottom:-1px; color:#50645e; font:inherit; cursor:pointer; }
-.season-switch button[aria-pressed="true"] { color:#17493d; border-color:currentColor; }
-#boseong-reading { padding-top:14px; }
-#boseong-reading p { margin:0 0 5px; max-width:47ch; font-size:16px; line-height:1.47; }
-#boseong-reading .season-range,#boseong-reading small { color:#54655e; font-size:13px; }
-.boseong-paper { display:inline-block; margin-top:15px; color:#17493d; font-size:15px; }
-.boseong-method { margin-top:10px; font-size:14px; color:#50645e; }
-.boseong-method summary { width:fit-content; color:#354e47; }
-.boseong-method p { margin:8px 0 0; max-width:48ch; }
-@media (min-width:781px) { #boseong-reading { min-height:108px; } }
-@media (max-width:780px) {
-  .boseong-layout { grid-template-columns:1fr; grid-template-areas:"intro" "land" "results"; gap:24px; }
-  .boseong-intro h2 { max-width:19ch; }
-  .boseong-results { padding:0; }
-}
+.home-research {padding-block:clamp(40px,5vw,74px);}
+.home-research h2 {font-size:clamp(28px,3.1vw,46px);letter-spacing:-.045em;margin-bottom:22px;}
+.home-research nav {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,4vw,64px);}
+.home-research nav a {display:block;padding:13px 0 4px;border-top:1px solid #9eafac;text-decoration:none;}
+.home-research h3 {font:500 clamp(18px,1.5vw,24px)/1.25 var(--type-sans);letter-spacing:-.025em;}
+.home-research p {margin:8px 0 0;font-size:16px;line-height:1.46;color:#4a5a59;max-width:36ch;}
+.home-research a:hover h3,.home-research a:focus-visible h3 {text-decoration:underline;text-underline-offset:4px;}
+@media(max-width:700px){.home-research nav{grid-template-columns:1fr;gap:14px;}.home-research p {max-width:none;}}

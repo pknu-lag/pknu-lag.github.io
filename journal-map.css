@@ -1,0 +1,27 @@
+.journal-places {padding:clamp(22px,3vw,42px) 0 20px;}
+.journal-places h2 {font-size:clamp(27px,2.6vw,41px);margin-bottom:19px;}
+.places-layout {display:grid;grid-template-columns:minmax(0,2.3fr) minmax(200px,.8fr);gap:clamp(20px,3vw,44px);align-items:start;}
+.places-map {position:relative;isolation:isolate;overflow:hidden;aspect-ratio:2 / 1;background:#e9f2f3;}
+.places-land,.places-pins {position:absolute;inset:0;width:100%;height:100%;}
+.place-dot {position:absolute;transform:translate(-50%,-50%);width:5px;height:5px;border-radius:50%;background:#17625c;pointer-events:none;}
+.places-map .place-pin {position:absolute;transform:translate(-7px,-50%);height:28px;width:max-content;padding:0 0 0 15px;border:0;background:transparent;color:#123d3c;cursor:pointer;}
+.place-pin::before {content:"";box-sizing:border-box;position:absolute;top:9px;left:2px;width:10px;height:10px;border-radius:50%;background:#17625c;border:2px solid white;box-shadow:0 0 0 1px #24534b;}
+.place-pin span {display:block;background:#fffef9ed;padding:2px 5px;font:500 clamp(11px,1vw,15px)/1.25 var(--type-sans);white-space:nowrap;color:#203939;}
+.places-map .place-pin.label-left {transform:translate(calc(-100% + 7px),-50%);padding:0 15px 0 0;}
+.place-pin.label-left::before {left:auto;right:2px;}
+.place-pin[aria-pressed="true"]::before,.place-pin:hover::before {background:#a54425;}
+.place-pin[aria-pressed="true"] span {color:#83391f;}
+.world-reset {position:absolute;bottom:9px;left:10px;min-height:35px;border:1px solid #b3c6c0;border-radius:4px;padding:5px 10px;background:#fff;color:#243e3c;cursor:pointer;}
+.places-figure figcaption {margin:8px 0 0;color:#53645f;font-size:12px;line-height:1.5;}
+.places-index label {display:block;font-size:14px;color:#485b55;}
+.places-index select {font:500 16px var(--type-sans);width:100%;min-height:44px;margin:4px 0 12px;}
+#places-record {display:grid;gap:10px;}
+#places-record a {font-size:14px;line-height:1.38;text-underline-offset:3px;}
+#places-record img {display:block;width:100%;max-height:175px;object-fit:cover;margin-bottom:7px;}
+.places-map button:focus-visible {outline:2px solid #2b565a;outline-offset:2px;z-index:2;}
+@media(max-width:720px) {
+  .places-layout {grid-template-columns:1fr;gap:15px;}
+  .places-map {aspect-ratio:1.8;}
+  #places-record img {width:95px;height:70px;margin:0 12px 0 0;flex:none;}
+  #places-record a:first-child {display:flex;align-items:center;}
+}
