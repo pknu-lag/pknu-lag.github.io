@@ -1,10 +1,5 @@
 (() => {
   const figure = document.querySelector('.pass-map');
-  const profile = document.querySelector('.profile-column');
-  const reveal = new IntersectionObserver(([entry]) => {
-    if(entry.isIntersecting) { profile.classList.add('in-view'); reveal.disconnect(); }
-  });
-  reveal.observe(profile);
   const canvas = document.querySelector('#track-map');
   const context = canvas.getContext('2d');
   if (!context || !window.SmapFeed) return;
