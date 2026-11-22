@@ -89,7 +89,7 @@ if (light) {
     slideDirection = direction;
     selected = (index + archive.length) % archive.length;
     const item = archive[selected];
-    image.src = item.href;
+    image.src = item.querySelector("img").src;
     image.alt = item.querySelector("img").alt;
     caption.textContent = image.alt;
     count.textContent = String(selected + 1).padStart(2, "0") + " / " + String(archive.length).padStart(2, "0");

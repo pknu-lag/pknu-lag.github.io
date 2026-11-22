@@ -39,12 +39,13 @@ body:has(#light[open]) { overflow: hidden; }
   font-variant-numeric: tabular-nums; word-spacing: .12em;
 }
 #light .viewer-button {
-  display: grid; place-items: center; width: 44px; height: 44px; padding: 0;
-  margin: 0; border: 0; border-radius: 50%; background: transparent; color: inherit;
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  min-height: 44px; padding: 0 16px; font: 400 15px/1 var(--type-sans);
+  margin: 0; border: 1px solid #707c80; border-radius: 24px; background: #252d31; color: var(--viewer-ink);
   transition: background-color 150ms, color 150ms; cursor: pointer;
 }
 #light #close { background: #252d31; }
-.viewer-button span { display: block; position: relative; pointer-events: none; }
+.viewer-button span { display: block; flex: none; position: relative; pointer-events: none; }
 .viewer-pager .viewer-button span {
   width: 10px; height: 10px; border-right: 1.8px solid; border-top: 1.8px solid;
 }
