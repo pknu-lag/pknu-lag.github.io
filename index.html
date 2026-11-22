@@ -13,13 +13,13 @@
     <canvas id="track-map" aria-hidden="true"></canvas>
     <div class="map-identity"><h1 id="lab-name">Land–Atmosphere<br>Group</h1>
       <p>We study how water stored on land shapes weather and climate.</p></div>
-    <p class="map-date">Pass replay <time id="observed-day">Checking observation date…</time></p>
+    <p class="map-date">SMAP <time id="observed-day">Checking observation date…</time></p>
     <div class="map-key"><span>Surface soil moisture <small>(cm³/cm³)</small></span>
       <img src="img/smap-colors.png" width="356" height="10" alt=""><div><span>0</span><span>0.30</span><span>≥0.60</span></div>
       <span class="rain-title">Precipitation <small>(mm/h)</small></span>
       <div class="rain-legend"><span><i></i>0.1–&lt;1</span><span><i></i>1–&lt;5</span><span><i></i>≥5</span></div>
-      <small id="rain-window">IMERG · checking frame</small></div>
-    <div class="sample-label" id="track-sample" hidden><span>Mapped soil moisture</span><b id="sample-value"></b><small id="sample-location"></small><small id="sample-rain" hidden></small></div>
+      <small><time id="rain-window">IMERG · checking frame</time></small></div>
+    <div class="sample-label" id="track-sample" hidden><span>Mapped soil moisture</span><b id="sample-value"></b><small id="sample-location"></small></div>
   </div>
   <div class="replay-strip"><div class="wrap replay-bar">
     <div class="pass-meta"><b id="pass-id">Observations replay</b><span id="pass-time">NASA satellite archive</span></div>
@@ -28,9 +28,10 @@
     <details class="map-info"><summary>Map notes</summary><div>
       <strong>How to read the replay</strong>
       <p>Coloured strips appear behind the SMAP marker and stay on the fixed map. The marker follows the approximate centre of each archived swath. Soil moisture comes from the corresponding morning or evening 9 km composite. Its readout gives the colour interval at the sampled grid cell.</p>
-      <p>IMERG rates are sampled every 2° for the last completed half-hour of the replay. Slanted strokes show rain and dots show snow at rates of 0.1 mm/h or higher.</p>
-      <p>The date is in UTC. The replay uses the latest complete archive date up to yesterday. The times below the map are the recorded start and end of each SMAP pass. Rain windows follow the replay’s estimated time within that pass.</p>
-      <a id="map-origin" href="https://worldview.earthdata.nasa.gov/?l=SMAP_L3_Passive_Enhanced_Day_Soil_Moisture&amp;t=2026-11-18">NASA Worldview</a> · <a href="https://doi.org/10.5067/M20OXIZHY3RJ">SMAP</a> · <a href="https://gpm.nasa.gov/data/imerg">IMERG</a> · <a href="https://gibs.earthdata.nasa.gov/">Basemap</a>
+      <p>IMERG shows the most recent available half-hour through the previous UTC day, sampled every 2°. Midnight at the end of the interval is 00:00 the next day. Slanted strokes show rain and dots show snow at rates of 0.1 mm/h or higher.</p>
+      <p>The date is in UTC. The replay uses the latest complete archive date up to yesterday. The times below the map are the recorded start and end of each SMAP pass. SMAP and IMERG update independently. Each layer shows its own observation date.</p>
+      <p><span id="smap-status">Checking the SMAP archive…</span> <span id="rain-status">Checking the IMERG archive…</span></p>
+      <a id="map-origin" href="https://worldview.earthdata.nasa.gov/?l=SMAP_L3_Passive_Enhanced_Day_Soil_Moisture&amp;t=2026-11-18">NASA Worldview</a> · <a href="https://doi.org/10.5067/M20OXIZHY3RJ">SMAP</a> · <a id="rain-origin" href="https://gpm.nasa.gov/data/imerg">IMERG frame</a> · <a href="https://gibs.earthdata.nasa.gov/">Basemap</a>
     </div></details>
   </div></div>
 </section>

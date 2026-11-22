@@ -16,9 +16,8 @@
   base.src = 'img/smap-terrain.webp';
   let pair, trail, passes, passIndex = 0, fraction = 0;
   let sampledLabels = [];
-  let view, rainFrame=null, rainSlot='', rainLayer, rainRetry=0, paintedFrom=0;
+  let view, rainFrame=null, rainLayer, paintedFrom=0;
   const rainWindow=document.querySelector('#rain-window');
-  const rainReadout=document.querySelector('#sample-rain');
   let width = 0, height = 0, pixelRatio = 1, visible = true;
   let playing = !motion.matches, raf = 0, lastFrame = 0, lastLabel = '', lastPass = '';
   const wrap = degrees => ((degrees + 180) % 360 + 360) % 360 - 180;
@@ -131,30 +130,15 @@
     }
   }
 
-  function requestRain(epoch) {
-    if(!window.RainFeed) {rainWindow.textContent='IMERG frame unavailable';return;}
-    const key=RainFeed.slot(pair.date,epoch);
-    if(key===rainSlot && (!rainRetry || Date.now()<rainRetry)) return;
-    rainSlot=key;rainFrame=null;rainLayer=null;rainRetry=0;
-    rainWindow.textContent=key?'IMERG · loading frame':'IMERG frame unavailable';
-    if(!key) return;
-    const day=pair.date;
-    RainFeed.load(day,epoch).then(frame=>{
-      if(rainSlot!==key || pair.date!==day) return;
-      rainFrame=frame?.start===key ? frame : null;
-      if(rainFrame) {
-        const start=new Date(frame.start), end=new Date(frame.end);
-        const dateText=start.toISOString().slice(0,10)===day?'':start.toLocaleDateString('en-GB',{month:'short',day:'numeric',timeZone:'UTC'})+' ';
-        rainWindow.textContent='IMERG · '+dateText+time(start.toISOString())+'–'+time(end.toISOString())+' UTC';
-      } else {
-        rainWindow.textContent='IMERG frame unavailable';
-        rainRetry=Date.now()+60000;
-      }
-      buildRainLayer();
-      draw();
-    }).catch(()=>{
-      if(rainSlot===key && day===pair.date) {rainWindow.textContent='IMERG frame unavailable';rainRetry=Date.now()+60000;}
-    });
+  function displayRain(frame) {
+    rainFrame = frame;
+    const start = new Date(frame.start);
+    const date = start.toLocaleDateString('en-GB',{day:'numeric',month:'short',timeZone:'UTC'});
+    rainWindow.textContent = 'IMERG · '+date+' · '+time(frame.start)+'–'+time(frame.end)+' UTC';
+    rainWindow.dateTime = frame.start;
+    document.querySelector('#rain-origin').href = frame.source;
+    buildRainLayer();
+    draw();
   }
 
   function updateText(pass,lon,lat,pointX,pointY) {
@@ -167,13 +151,10 @@
     }
     const value=fraction>paintedFrom ? pair.valueAt(pass.phase,lon,lat) : null;
     const coord=coordinates(lon,lat);
-    const coincident=rainFrame?.valueAt(lon,lat);
-    const key=coord+value+(fraction<=paintedFrom?'start':'')+(coincident?.value || '');
+    const key=coord+value+(fraction<=paintedFrom?'start':'');
     if(lastLabel!==key) {
       document.querySelector('#sample-value').textContent=value ? value+' cm³/cm³' : fraction<=paintedFrom ? 'Starting pass' : 'No retrieval';
       document.querySelector('#sample-location').textContent=coord;
-      rainReadout.hidden=!coincident;
-      if(coincident) rainReadout.textContent=(coincident.kind==='snow'?'Snow · ':'Rain · ')+coincident.value+' mm/h';
       lastLabel=key;
     }
     tag.style.left=Math.round(Math.min(width-212,Math.max(0,pointX)))+'px';
@@ -188,8 +169,6 @@
   function draw() {
     if(!trail || !width || !height) return;
     const pass=passes[passIndex];
-    const start=Date.parse(pass.start);
-    requestRain(start+(Date.parse(pass.end)-start)*fraction);
     const [lon,lat]=interpolate(pass.centerline,fraction);
     const compact=width<700;
     const {left,top,scale}=view;
@@ -312,6 +291,10 @@
   document.addEventListener('visibilitychange',resumeIfVisible);
   new ResizeObserver(size).observe(figure);
   new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;resumeIfVisible();}).observe(figure);
+  window.RainFeed.watchLatest(displayRain, status => {
+    document.querySelector('#rain-status').textContent = 'IMERG: '+status+'.';
+    if (!rainFrame && status.includes('unavailable')) rainWindow.textContent = 'IMERG unavailable';
+  });
   base.decode().then(()=>{
     window.SmapFeed.load(data=>{
       pair=data;
@@ -321,7 +304,6 @@
       passIndex=0;fraction=0;lastPass='';lastLabel='';
       firstView();
       paintedFrom=fraction;
-      rainSlot='';rainFrame=null;rainLayer=null;rainRetry=0;
       const dateLabel = document.querySelector('#observed-day');
       dateLabel.dateTime = pair.date;
       dateLabel.textContent = apiDate.format(new Date(pair.date));

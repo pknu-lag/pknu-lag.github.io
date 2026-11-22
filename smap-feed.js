@@ -180,6 +180,9 @@
       if (first <= last) common.push([first,last]);
     }
     common.sort((a,b)=>b[1].localeCompare(a[1]));
+    if (!common.length) throw new Error('No common SMAP observation date');
+    const status = document.querySelector('#smap-status');
+    if (status) status.textContent = 'Latest joint AM/PM archive date: '+common[0][1]+' UTC.';
     let attempts = 0;
     for (const [first,last] of common) {
       let day = last;
@@ -199,7 +202,10 @@
     if (checkedDay === targetDay && now - lastCheck < 15 * 60000) return;
     checkedDay = targetDay;
     lastCheck = now;
-    refreshPromise = findNewPair(targetDay).catch(() => {}).finally(() => {refreshPromise=null;});
+    refreshPromise = findNewPair(targetDay).catch(() => {
+      const status = document.querySelector('#smap-status');
+      if (status) status.textContent = 'SMAP archive check unavailable. The map keeps the last verified observation.';
+    }).finally(() => {refreshPromise=null;});
   }
 
   async function initialize() {
